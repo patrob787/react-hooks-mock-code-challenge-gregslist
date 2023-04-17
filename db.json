@@ -35,6 +35,18 @@
       "description": "Treadmill Parts For Free",
       "image": "./images/treadmill.jpg",
       "location": "East Flatbush"
+    },
+    {
+      "description": "heater",
+      "image": "./images/heater.jpg",
+      "location": "BROOKLYN",
+      "id": 8
+    },
+    {
+      "description": "Patio Chair",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/White_Monobloc_chair.jpg/1200px-White_Monobloc_chair.jpg",
+      "location": "Astoria, NY",
+      "id": 9
     }
   ]
 }

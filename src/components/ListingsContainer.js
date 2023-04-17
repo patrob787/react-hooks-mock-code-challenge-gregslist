@@ -1,24 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState } from "react";
 import ListingCard from "./ListingCard";
 
-function ListingsContainer({ searchData }) {
-  const [cardData, setCardData] = useState([]);
-  // const [deleteId, setDeleteId] = useState("");
+function ListingsContainer({ cardData, searchData, onDelete }) {
   
-
-  useEffect(() => {
-    fetch("http://localhost:6001/listings")
-    .then(resp => resp.json())
-    .then(data => setCardData(data))
-  }, [])
-
-  function onDelete(id) {
-    const reducedListings = cardData.filter((listing) => {
-      return listing.id !== id;
-    })
-    setCardData(reducedListings);
-  }
-
   const searchListings = cardData.filter((listing) => {
     if (listing.description.toLowerCase().includes(searchData.toLowerCase())) {
       return listing;
