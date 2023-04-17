@@ -2,7 +2,9 @@ import React, {useState, useEffect} from "react";
 import ListingCard from "./ListingCard";
 
 function ListingsContainer({ searchData }) {
-  const[cardData, setCardData] = useState([]);
+  const [cardData, setCardData] = useState([]);
+  // const [deleteId, setDeleteId] = useState("");
+  
 
   useEffect(() => {
     fetch("http://localhost:6001/listings")
@@ -10,9 +12,14 @@ function ListingsContainer({ searchData }) {
     .then(data => setCardData(data))
   }, [])
 
+  function onDelete(id) {
+    const reducedListings = cardData.filter((listing) => {
+      return listing.id !== id;
+    })
+    setCardData(reducedListings);
+  }
+
   const searchListings = cardData.filter((listing) => {
-    console.log(listing.description)
-    console.log(searchData)
     if (listing.description.toLowerCase().includes(searchData.toLowerCase())) {
       return listing;
     }
@@ -21,9 +28,11 @@ function ListingsContainer({ searchData }) {
   const listingCards = searchListings.map((listing) => {
     return <ListingCard 
         key={listing.id}
+        id={listing.id}
         description={listing.description} 
         image={listing.image} 
-        location={listing.location} 
+        location={listing.location}
+        onDelete={onDelete}
       />
   })
 
